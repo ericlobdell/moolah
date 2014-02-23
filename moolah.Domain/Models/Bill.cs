@@ -12,6 +12,6 @@ namespace moolah.Domain.Models
         public bool IsChargedInetrest { get; set; }
         public decimal? InterestRate { get; set; }
         public DateTime DueDate { get; set; }
-        public int PayeeId { get; set; }
+        public string PayeeId { get; set; }
     }
 }
