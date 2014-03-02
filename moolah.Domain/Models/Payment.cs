@@ -4,8 +4,8 @@ namespace moolah.Domain.Models
 {
     public class Payment
     {
-        public string id { get; set; }
-        public string BillId { get; set; }
+        public int Id { get; set; }
+        public int BillId { get; set; }
         public decimal Amount { get; set; }
         public DateTime PaymentDate { get; set; }
         public string Note { get; set; }

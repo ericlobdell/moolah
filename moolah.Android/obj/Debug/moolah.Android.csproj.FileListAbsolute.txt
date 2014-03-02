@@ -12,14 +12,6 @@ C:\Code\moolah\moolah.Android\obj\Debug\res\drawable\icon.png
 C:\Code\moolah\moolah.Android\obj\Debug\R.cs.flag
 C:\Code\moolah\moolah.Android\obj\Debug\uploadflags.txt
 C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.dll
-C:\Code\moolah\moolah.Android\bin\Debug\Microsoft.WindowsAzure.Mobile.dll
-C:\Code\moolah\moolah.Android\bin\Debug\Newtonsoft.Json.dll
-C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.dll
-C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.Primitives.dll
 C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.pdb
-C:\Code\moolah\moolah.Android\bin\Debug\Microsoft.WindowsAzure.Mobile.xml
-C:\Code\moolah\moolah.Android\bin\Debug\Newtonsoft.Json.xml
-C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.xml
-C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.Primitives.xml
 C:\Code\moolah\moolah.Android\obj\Debug\moolah.Android.csprojResolveAssemblyReference.cache
 C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.dll.mdb

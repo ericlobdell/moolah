@@ -45,14 +45,14 @@ namespace moolah.Domain.Services
 
         public DateTime GetPaydayAfterNext ()
         {
-            return GetNextPayday().AddDays( DaysInWeek * _config.PayWeekInterval );
+            return GetNextPayday().AddDays( DaysInWeek * _config.PayInterval );
         }
 
         public bool IsPayDay ( DateTime date )
         {
             var days = ( date.Date - _config.BasePayDay.Date ).TotalDays;
             var numWeeks = days / DaysInWeek;
-            return ( numWeeks % _config.PayWeekInterval ) == 0;
+            return ( numWeeks % _config.PayInterval ) == 0;
         }
     }
 }
