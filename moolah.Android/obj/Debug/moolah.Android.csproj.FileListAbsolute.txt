@@ -15,3 +15,10 @@ C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.dll
 C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.pdb
 C:\Code\moolah\moolah.Android\obj\Debug\moolah.Android.csprojResolveAssemblyReference.cache
 C:\Code\moolah\moolah.Android\bin\Debug\moolah.Domain.dll.mdb
+C:\Code\moolah\moolah.Android\bin\Debug\moolah.Android.dll.config
+C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.dll
+C:\Code\moolah\moolah.Android\bin\Debug\Newtonsoft.Json.dll
+C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.Primitives.dll
+C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.xml
+C:\Code\moolah\moolah.Android\bin\Debug\Newtonsoft.Json.xml
+C:\Code\moolah\moolah.Android\bin\Debug\System.Net.Http.Primitives.xml

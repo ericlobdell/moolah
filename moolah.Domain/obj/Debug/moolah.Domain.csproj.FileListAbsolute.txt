@@ -15,7 +15,7 @@ C:\Code\moolah\moolah.Domain\bin\Debug\System.Net.Http.Extensions.xml
 C:\Code\moolah\moolah.Domain\bin\Debug\System.Net.Http.Primitives.xml
 C:\Code\moolah\moolah.Domain\bin\Debug\Microsoft.Threading.Tasks.dll
 C:\Code\moolah\moolah.Domain\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
-C:\Code\moolah\moolah.Domain\bin\Debug\PortableRest.dll
 C:\Code\moolah\moolah.Domain\bin\Debug\Microsoft.Threading.Tasks.xml
 C:\Code\moolah\moolah.Domain\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
-C:\Code\moolah\moolah.Domain\bin\Debug\PortableRest.xml
+C:\Code\moolah\moolah.Domain\bin\Debug\System.Net.Http.Formatting.dll
+C:\Code\moolah\moolah.Domain\bin\Debug\System.Net.Http.Formatting.xml
