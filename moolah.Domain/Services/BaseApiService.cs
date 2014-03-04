@@ -10,6 +10,7 @@ namespace moolah.Domain.Services
     public class BaseApiService<T>
     {
         private string _endpoint;
+        private string _baseUrl;
         private HttpMessageHandler _handler;
         private IApiRequestManager<ApiResponse> _api; 
         public HttpMessageHandler Handler { get; set; }
@@ -23,24 +24,30 @@ namespace moolah.Domain.Services
 
         public async Task<T> GetById(int id)
         {
-            var res = await _api.Get( BaseUrl + id ).ContinueWith( ( r ) => r.Result );
+            var res = await _api.Get( BaseUrl + id )
+                .ContinueWith( ( r ) => r.Result );
             return JsonConvert.DeserializeObject<T>( res.Content.ReadAsStringAsync().Result );
         }
 
         public async Task<int> Create(T entity)
         {
-            var res = await _api.Post( BaseUrl, entity ).ContinueWith( ( r ) => r.Result );
-            return JsonConvert.DeserializeObject<int>( res.Content.ReadAsStringAsync().Result );
+            var res = await _api.Post( BaseUrl, entity )
+                .ContinueWith( ( r ) => r.Result );
+            var test = res.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<int>( test);
         }
 
         public async Task<bool> Update(T entity)
         {
-            return await _api.Put( BaseUrl, entity ).ContinueWith( ( r ) => r.Result );
+            return await _api.Put( BaseUrl, entity )
+                .ContinueWith( ( r ) => r.Result );
         }
 
         public async Task<bool> Delete(int id)
         {
-            return await _api.Delete( BaseUrl + id ).ContinueWith( ( r ) => r.Result );
+            return await _api.Delete( BaseUrl + id )
+                .ContinueWith( ( r ) => r.Result );
         }
 
         public void SetHandler(HttpMessageHandler handler)
@@ -53,13 +60,21 @@ namespace moolah.Domain.Services
             _api = mgr;
         }
 
+        public void SetBaseUrl(string url)
+        {
+            _baseUrl = url;
+        }
+
         public BaseApiService(string endpoint)
         {
-            BaseUrl = "http://lobdellio.azurewebsites.net/api/" + endpoint + "/";
-            Handler = _handler ?? new HttpClientHandler();
+            if (String.IsNullOrEmpty(_baseUrl))
+                _baseUrl = "http://lobdellio.azurewebsites.net/api/";
 
-            if (_api == null)
+            if ( _api == null )
                 _api = new ApiRequestManager<ApiResponse>();
+
+            BaseUrl = _baseUrl + endpoint + "/";
+            Handler = _handler ?? new HttpClientHandler();
         }
 
         public BaseApiService() { }
