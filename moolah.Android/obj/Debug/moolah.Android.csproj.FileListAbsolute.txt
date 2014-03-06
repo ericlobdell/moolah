@@ -22,3 +22,4 @@ C:\Code\moolah\moolah.Android\obj\Debug\res\drawable\icon.png
 C:\Code\moolah\moolah.Android\obj\Debug\R.cs.flag
 C:\Code\moolah\moolah.Android\obj\Debug\uploadflags.txt
 C:\Code\moolah\moolah.Android\obj\Debug\res\layout\billslistitem.xml
+C:\Code\moolah\moolah.Android\obj\Debug\res\values\dimens.xml

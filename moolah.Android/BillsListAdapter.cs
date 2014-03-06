@@ -55,10 +55,14 @@ namespace moolah.Android
             }
 
             var nameText = row.FindViewById<TextView>( Resource.Id.billNameTextView );
-            var dueDateText = row.FindViewById<TextView>( Resource.Id.dueDateTextView );
+            var amountText = row.FindViewById<TextView>( Resource.Id.billAmountTextView );
+            var dueDateText = row.FindViewById<TextView>( Resource.Id.billDueOnTextView );
+            var dueInText = row.FindViewById<TextView>( Resource.Id.billDueInTextView );
 
             nameText.Text = currrentItem.Name;
             dueDateText.Text = currrentItem.DueDate.ToShortDateString();
+            amountText.Text = currrentItem.Amount.ToString("C");
+            dueInText.Text = String.Format( "Due in {0} days.", ( DateTime.Now - currrentItem.DueDate ).Days ); 
 
             return row;
         }
