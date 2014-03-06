@@ -1,1 +1,2 @@
 moolah.Android.Activity1;moolah.android.Activity1
+moolah.Android.BillsListAdapter;moolah.android.BillsListAdapter

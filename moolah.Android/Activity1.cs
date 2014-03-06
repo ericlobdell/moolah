@@ -14,7 +14,7 @@ namespace moolah.Android
     [Activity( Label = "moolah.Android", MainLauncher = true, Icon = "@drawable/icon" )]
     public class Activity1 : Activity
     {
-        int count = 1;
+        private BillsListAdapter adapter;
 
         protected override async void OnCreate ( Bundle bundle )
         {
@@ -23,11 +23,9 @@ namespace moolah.Android
             // Set our view from the "main" layout resource
             SetContentView( Resource.Layout.Main );
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            var button = FindViewById<Button>( Resource.Id.MyButton );
-            
-            button.Click += delegate { button.Text = string.Format( "{0} clicks!", count++ ); };
+            adapter = new BillsListAdapter(this, Resource.Layout.BillsListItem);
+            var listView = FindViewById<ListView>(Resource.Id.listViewBills);
+            listView.Adapter = adapter;
 
             try
             {
@@ -36,8 +34,6 @@ namespace moolah.Android
             catch (Exception e) {
 				CreateAndShowDialog (e.Message, "Error");
 			}
-            
-            
         }
 
         void CreateAndShowDialog ( string message, string title )
@@ -52,24 +48,19 @@ namespace moolah.Android
         async Task LoadBills()
         {
             var billsText = FindViewById<TextView>( Resource.Id.billsText );
-
-            billsText.Text = "Getting Bills From API.";
             var client = new MoolahApiClient();
 
-            await client.Bills.Get().ContinueWith( ( task ) =>
+            billsText.Text = "Getting Bills From API.";
+            adapter.Clear();
+
+            await client.Bills.Get().ContinueWith( ( task ) => RunOnUiThread( () => 
             {
-                RunOnUiThread(() =>
+                var bills = task.Result;
+                foreach ( var bill in bills )
                 {
-                    billsText.Text += "\nBack From API...";
-                    var bills = task.Result;
-                    billsText.Text += "\nThere are " + bills.Count() + " in the DB\n\n";
-                    foreach ( var bill in bills )
-                    {
-                        billsText.Text += bill.Name + "\n";
-                    }
-                });
-                
-            } );
+                    adapter.Add(bill);
+                }
+            }));
         }
     }
 }
