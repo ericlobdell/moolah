@@ -18,7 +18,7 @@ namespace moolah.Android
     {
         readonly Activity _activity;
         readonly int _layoutResourceId;
-        List<Bill> _bills = new List<Bill>();
+        readonly List<Bill> _bills = new List<Bill>();
 
         public BillsListAdapter ( Activity activity, int layoutResourceId )
         {
@@ -28,7 +28,7 @@ namespace moolah.Android
         }
         public override long GetItemId(int position)
         {
-            return position;
+            return _bills[position].Id;
         }
 
         public void Add ( Bill bill )
