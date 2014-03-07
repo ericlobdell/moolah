@@ -16,8 +16,8 @@ namespace moolah.Android
 {
     public class BillsListAdapter : BaseAdapter<Bill>
     {
-        Activity _activity;
-        int _layoutResourceId;
+        readonly Activity _activity;
+        readonly int _layoutResourceId;
         List<Bill> _bills = new List<Bill>();
 
         public BillsListAdapter ( Activity activity, int layoutResourceId )
@@ -62,7 +62,7 @@ namespace moolah.Android
             nameText.Text = currrentItem.Name;
             dueDateText.Text = currrentItem.DueDate.ToShortDateString();
             amountText.Text = currrentItem.Amount.ToString("C");
-            dueInText.Text = String.Format( "Due in {0} days.", ( DateTime.Now - currrentItem.DueDate ).Days ); 
+            dueInText.Text = String.Format( "Due in {0} days", ( DateTime.Now - currrentItem.DueDate ).Days ); 
 
             return row;
         }

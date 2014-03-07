@@ -8,24 +8,26 @@ namespace moolah.Domain.Services
         private const int DaysInWeek = 7;
 
         private readonly Settings _config;
+        private readonly DateTime _currentDate;
        // private readonly ConfigManager _repo = new ConfigManager();
 
         public DateTime PreviousPayday { get; set; }
         public DateTime NextPayday { get; set; }
 
-        public PaydayManager ()
+        public PaydayManager (Settings config)
         {
-    //        _config = _repo.GetConfig();
+            _config = config;
+            _currentDate = DateTimeProvider.GetCurrentDateTime();
         }
         public DateTime GetNextPayday ()
         {
-            return DateTime.Now.AddDays( DaysUntilNextPayday() );
+            return _currentDate.AddDays( DaysUntilNextPayday() );
         }
 
         public int DaysUntilNextPayday ()
         {
             var dayCount = 0;
-            var today = DateTime.Now;
+            var today = _currentDate;
             Func<DateTime, int> getDayCount = null;
 
             getDayCount = date =>

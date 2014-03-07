@@ -48,6 +48,7 @@
     <Compile Include="Services\BaseApiService.cs" />
     <Compile Include="Services\BillsApiService.cs" />
     <Compile Include="Services\BillManager.cs" />
+    <Compile Include="Services\DateTimeProvider.cs" />
     <Compile Include="Services\IApiClient.cs" />
     <Compile Include="Services\MoolahApiClient.cs" />
     <Compile Include="Services\PaydayManager.cs" />
