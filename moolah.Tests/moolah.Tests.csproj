@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\packages\NSubstitute.1.7.1.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
@@ -47,7 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiRequestManagerTests.cs" />
+    <Compile Include="BaseApiServiceTests.cs" />
+    <Compile Include="BillCollectionExtensionTests.cs" />
+    <Compile Include="BillsApiServiceTests.cs" />
     <Compile Include="DateTimeProviderTests.cs" />
+    <Compile Include="Mocks\MockApiRequestManager.cs" />
     <Compile Include="Mocks\MockBillsApi.cs" />
     <Compile Include="PaydayManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

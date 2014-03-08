@@ -25,18 +25,14 @@ namespace moolah.Domain.Services
         }
         public async Task<T> Get(string url)
         {
-            var response = new T();
-            return await _client.GetAsync(url)
-                .ContinueWith((task) =>
-                {
-                    var res = task.Result;
-                    response.Success = res.IsSuccessStatusCode;
-                    response.StatusCode = res.StatusCode;
-                    response.Content = res.Content;
-
-                    return response;
-                });
-            
+            var res = await _client.GetAsync(url);
+            return new T
+            {
+                Success = res.IsSuccessStatusCode,
+                StatusCode = res.StatusCode,
+                Content = res.Content
+            };
+                
         }
 
         public async Task<bool> Put ( string url, object obj)

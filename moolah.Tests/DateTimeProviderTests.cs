@@ -19,9 +19,9 @@ namespace moolah.Tests
             var baseDateTime = new DateTime(2014, 03, 03);
             var dateWithinToleranceRange = baseDateTime.AddMilliseconds(500);
 
-            var shouldBeTrue = DateTimeProvider.DatesAreWithinTolerance(baseDateTime, dateWithinToleranceRange, _tolerance);
+            var sut = DateTimeProvider.DatesAreWithinTolerance(baseDateTime, dateWithinToleranceRange, _tolerance);
 
-            Assert.True(shouldBeTrue);
+            Assert.True(sut);
 
         }
 
@@ -31,26 +31,26 @@ namespace moolah.Tests
             var baseDateTime = new DateTime( 2014, 03, 03 );
             var dateOutOfToleranceRange = baseDateTime.AddSeconds( 2 );
 
-            var shouldBeFalse = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateOutOfToleranceRange, _tolerance );
+            var sut = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateOutOfToleranceRange, _tolerance );
 
-            Assert.False( shouldBeFalse );
+            Assert.False( sut );
         }
 
         [Fact]
-        public void DatesAreWithinToleranceUseDefaultValueWhenNoToleranceSpecified ()
+        public void DatesAreWithinToleranceUsesDefaultValueWhenNoToleranceSpecified ()
         {
             var baseDateTime = new DateTime( 2014, 03, 03 );
             var dateWithinToleranceRange = baseDateTime.AddMilliseconds( 500 );
-            var shouldBeTrue = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateWithinToleranceRange);
+            var sut = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateWithinToleranceRange);
 
-            Assert.True( shouldBeTrue );
+            Assert.True( sut );
         }
         
         [Fact]
         public void GetCurrentDateTimeReturnsSystemNowDateByDefault()
         {
-            var shouldBeTrue = DateTimeProvider.DatesAreWithinTolerance(DateTimeProvider.GetCurrentDateTime(), DateTime.Now);
-            Assert.True(shouldBeTrue);
+            var sut = DateTimeProvider.DatesAreWithinTolerance(DateTimeProvider.GetCurrentDateTime(), DateTime.Now);
+            Assert.True(sut);
         }
 
         [Fact]

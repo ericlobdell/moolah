@@ -7,62 +7,54 @@ using Newtonsoft.Json;
 
 namespace moolah.Domain.Services
 {
-    public class BaseApiService<T>
+    public class BaseApiService<T> : IApiService<T>
     {
         private string _endpoint;
         private string _baseUrl;
-        private HttpMessageHandler _handler;
-        private IApiRequestManager<ApiResponse> _api; 
-        public HttpMessageHandler Handler { get; set; }
+        public IApiRequestManager<ApiResponse> Api { get; set; }
         public string BaseUrl { get; set; }
         public async Task<IEnumerable<T>> Get()
         {
-            var res = await _api.Get(BaseUrl).ContinueWith((r) => r.Result);
+            var res = await Api.Get(BaseUrl).ContinueWith((r) => r.Result);
 
             return JsonConvert.DeserializeObject<IEnumerable<T>>( res.Content.ReadAsStringAsync().Result );
         }
 
         public async Task<T> GetById(int id)
         {
-            var res = await _api.Get( BaseUrl + id )
+            var res = await Api.Get( BaseUrl + id )
                 .ContinueWith( ( r ) => r.Result );
             return JsonConvert.DeserializeObject<T>( res.Content.ReadAsStringAsync().Result );
         }
 
         public async Task<int> Create(T entity)
         {
-            var res = await _api.Post( BaseUrl, entity )
+            var res = await Api.Post( BaseUrl, entity )
                 .ContinueWith( ( r ) => r.Result );
-            var test = res.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<int>( test);
+            return JsonConvert.DeserializeObject<int>( res.Content.ReadAsStringAsync().Result);
         }
 
         public async Task<bool> Update(T entity)
         {
-            return await _api.Put( BaseUrl, entity )
+            return await Api.Put( BaseUrl, entity )
                 .ContinueWith( ( r ) => r.Result );
         }
 
         public async Task<bool> Delete(int id)
         {
-            return await _api.Delete( BaseUrl + id )
+            return await Api.Delete( BaseUrl + id )
                 .ContinueWith( ( r ) => r.Result );
         }
 
-        public void SetHandler(HttpMessageHandler handler)
-        {
-            _handler = handler;
-        }
 
         public void SetApiManager(IApiRequestManager<ApiResponse> mgr)
         {
-            _api = mgr;
+            Api = mgr;
         }
 
         public void SetBaseUrl(string url)
         {
-            _baseUrl = url;
+            BaseUrl = url;
         }
 
         public BaseApiService(string endpoint)
@@ -70,11 +62,10 @@ namespace moolah.Domain.Services
             if (String.IsNullOrEmpty(_baseUrl))
                 _baseUrl = "http://lobdellio.azurewebsites.net/api/";
 
-            if ( _api == null )
-                _api = new ApiRequestManager<ApiResponse>();
+            if ( Api == null )
+                Api = new ApiRequestManager<ApiResponse>();
 
             BaseUrl = _baseUrl + endpoint + "/";
-            Handler = _handler ?? new HttpClientHandler();
         }
 
         public BaseApiService() { }

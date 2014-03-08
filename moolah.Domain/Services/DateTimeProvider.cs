@@ -9,7 +9,7 @@ namespace moolah.Domain.Services
     public static class DateTimeProvider
     {
         private static DateTime _currentDate = DateTime.Now;
-        private static TimeSpan _tolerance = TimeSpan.FromSeconds( 1 );
+        private static readonly TimeSpan Tolerance = TimeSpan.FromSeconds( 1 );
 
         public static DateTime GetCurrentDateTime()
         {
@@ -33,12 +33,8 @@ namespace moolah.Domain.Services
 
         public static bool DatesAreWithinTolerance ( DateTime date1, DateTime date2 )
         {
-            return ( date1 - date2 ).Duration() < _tolerance;
+            return ( date1 - date2 ).Duration() < Tolerance;
         }
 
-        public static void SetTolerance(TimeSpan tolerance)
-        {
-            _tolerance = tolerance;
-        }
     }
 }
