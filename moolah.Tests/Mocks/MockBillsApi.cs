@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using moolah.Domain.Interfaces;
 using moolah.Domain.Services;
@@ -10,7 +9,7 @@ using moolah.Domain.Models;
 
 namespace moolah.Tests.Mocks
 {
-    public class MockBillsApiervice : IApiService<Bill>
+    public class MockBillsApiService : IApiService<Bill>
     {
         private List<Bill> _bills = new List<Bill>
         {

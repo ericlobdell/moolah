@@ -1,16 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using moolah.Domain.Models;
-using moolah.Domain.Services;
 
 namespace moolah.Android
 {
@@ -62,7 +55,7 @@ namespace moolah.Android
             nameText.Text = currrentItem.Name;
             dueDateText.Text = currrentItem.DueDate.ToShortDateString();
             amountText.Text = currrentItem.Amount.ToString("C");
-            dueInText.Text = String.Format( "Due in {0} days", ( DateTime.Now - currrentItem.DueDate ).Days ); 
+            dueInText.Text = String.Format( "Due in {0} days", ( currrentItem.DueDate - DateTime.Now ).Days ); 
 
             return row;
         }

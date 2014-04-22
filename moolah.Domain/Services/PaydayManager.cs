@@ -32,7 +32,8 @@ namespace moolah.Domain.Services
 
             getDayCount = date =>
             {
-                if ( IsPayDay( date ) ) return dayCount;
+                if ( IsPayDay( date ) ) 
+                    return dayCount;
 
                 dayCount++;
                 return getDayCount( date.AddDays( 1 ) );

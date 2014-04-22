@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.OS;
 using moolah.Domain.Services;
 
 namespace moolah.Android
 {
-    [Activity( Label = "moolah.Android", MainLauncher = true, Icon = "@drawable/icon" )]
+    [Activity( Label = "moolah", MainLauncher = true, Icon = "@drawable/icon" )]
     public class Activity1 : Activity
     {
         private BillsListAdapter adapter;
@@ -38,7 +34,7 @@ namespace moolah.Android
 
         void CreateAndShowDialog ( string message, string title )
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder( this );
+            var builder = new AlertDialog.Builder( this );
 
             builder.SetMessage( message );
             builder.SetTitle( title );
@@ -53,14 +49,19 @@ namespace moolah.Android
             billsText.Text = "Getting Bills From API.";
             adapter.Clear();
 
-            await client.Bills.Get().ContinueWith( ( task ) => RunOnUiThread( () => 
+            var bs = await client.Bills.Get();
+            foreach ( var bill in bs )
             {
-                var bills = task.Result;
-                foreach ( var bill in bills )
-                {
-                    adapter.Add(bill);
-                }
-            }));
+                adapter.Add( bill );
+            }
+
+            RemoveTextView(billsText);
+        }
+
+        private static void RemoveTextView(TextView billsText)
+        {
+            billsText.Text = "";
+            billsText.LayoutParameters.Height = 0;
         }
     }
 }

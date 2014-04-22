@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using moolah.Domain.Services;
 using Xunit;
 
@@ -11,7 +7,8 @@ namespace moolah.Tests
     public class DateTimeProviderTests : IDisposable
     {
 
-        private readonly TimeSpan _tolerance = TimeSpan.FromSeconds(1);
+        private readonly TimeSpan _oneSecondTolerance = TimeSpan.FromSeconds(1);
+        private readonly TimeSpan _threeSecondTolerance = TimeSpan.FromSeconds( 3 );
 
         [Fact]
         public void DatesAreWithinToleranceReturnsCorrectValueWhenTrue()
@@ -19,7 +16,7 @@ namespace moolah.Tests
             var baseDateTime = new DateTime(2014, 03, 03);
             var dateWithinToleranceRange = baseDateTime.AddMilliseconds(500);
 
-            var sut = DateTimeProvider.DatesAreWithinTolerance(baseDateTime, dateWithinToleranceRange, _tolerance);
+            var sut = DateTimeProvider.DatesAreWithinTolerance(baseDateTime, dateWithinToleranceRange, _oneSecondTolerance);
 
             Assert.True(sut);
 
@@ -31,25 +28,37 @@ namespace moolah.Tests
             var baseDateTime = new DateTime( 2014, 03, 03 );
             var dateOutOfToleranceRange = baseDateTime.AddSeconds( 2 );
 
-            var sut = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateOutOfToleranceRange, _tolerance );
+            var sut = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateOutOfToleranceRange, _oneSecondTolerance );
 
             Assert.False( sut );
         }
 
         [Fact]
-        public void DatesAreWithinToleranceUsesDefaultValueWhenNoToleranceSpecified ()
+        public void DatesAreWithinOneSecondReturnsCorrectValueWhenTrue ()
         {
             var baseDateTime = new DateTime( 2014, 03, 03 );
             var dateWithinToleranceRange = baseDateTime.AddMilliseconds( 500 );
-            var sut = DateTimeProvider.DatesAreWithinTolerance( baseDateTime, dateWithinToleranceRange);
+            var sut = DateTimeProvider.DatesAreWithinOneSecond( baseDateTime, dateWithinToleranceRange);
 
             Assert.True( sut );
+        }
+
+        [Fact]
+        public void DatesAreWithinOneSecondReturnsCorrectValueWhenFalse ()
+        {
+            var baseDateTime = new DateTime( 2014, 03, 03 );
+            var dateNotWithinToleranceRange = baseDateTime.AddSeconds(2);
+            var sut = DateTimeProvider.DatesAreWithinOneSecond( baseDateTime, dateNotWithinToleranceRange );
+
+            Assert.False( sut );
         }
         
         [Fact]
         public void GetCurrentDateTimeReturnsSystemNowDateByDefault()
         {
-            var sut = DateTimeProvider.DatesAreWithinTolerance(DateTimeProvider.GetCurrentDateTime(), DateTime.Now);
+            var currentSetDateTime = DateTimeProvider.GetCurrentDateTime();
+            var systemNow = DateTime.Now;
+            var sut = DateTimeProvider.DatesAreWithinTolerance(currentSetDateTime, systemNow, _threeSecondTolerance);
             Assert.True(sut);
         }
 
@@ -57,17 +66,17 @@ namespace moolah.Tests
         public void SetCurrentTimeEffectsReturnValeuForGetCurrentTime()
         {
             var expected = new DateTime(2014, 03, 10);
-            DateTimeProvider.SetCurrentTime(expected);
+            DateTimeProvider.SetCurrentDateTime(expected);
             var sut = DateTimeProvider.GetCurrentDateTime();
 
-            Assert.True( DateTimeProvider.DatesAreWithinTolerance (sut, expected, _tolerance) );
+            Assert.True( DateTimeProvider.DatesAreWithinOneSecond( sut, expected ) );
         }
 
         [Fact]
-        public void ResetDateTimeSetsCurrentDateTimeToSystemNow()
+        public void ResetDateTimeSetsGetCurrentDateTimeToSystemNow()
         {
             var newDateTimeNow = new DateTime(2014, 10, 10);
-            DateTimeProvider.SetCurrentTime(newDateTimeNow);
+            DateTimeProvider.SetCurrentDateTime(newDateTimeNow);
             Assert.Equal(DateTimeProvider.GetCurrentDateTime().Date, newDateTimeNow);
             DateTimeProvider.ResetDateTime();
             Assert.Equal( DateTimeProvider.GetCurrentDateTime().Date, DateTime.Now.Date );

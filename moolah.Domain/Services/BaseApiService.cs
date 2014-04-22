@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using moolah.Domain.Interfaces;
 using Newtonsoft.Json;
@@ -13,6 +12,19 @@ namespace moolah.Domain.Services
         private string _baseUrl;
         public IApiRequestManager<ApiResponse> Api { get; set; }
         public string BaseUrl { get; set; }
+
+        public BaseApiService ( string endpoint )
+        {
+            if ( String.IsNullOrEmpty( _baseUrl ) )
+                _baseUrl = "http://ericlobdell.azurewebsites.net/api/";
+
+            if ( Api == null )
+                Api = new ApiRequestManager<ApiResponse>();
+
+            BaseUrl = _baseUrl + endpoint + "/";
+        }
+
+        public BaseApiService () { }
         public async Task<IEnumerable<T>> Get()
         {
             var res = await Api.Get(BaseUrl).ContinueWith((r) => r.Result);
@@ -57,17 +69,6 @@ namespace moolah.Domain.Services
             BaseUrl = url;
         }
 
-        public BaseApiService(string endpoint)
-        {
-            if (String.IsNullOrEmpty(_baseUrl))
-                _baseUrl = "http://lobdellio.azurewebsites.net/api/";
-
-            if ( Api == null )
-                Api = new ApiRequestManager<ApiResponse>();
-
-            BaseUrl = _baseUrl + endpoint + "/";
-        }
-
-        public BaseApiService() { }
+        
     }
 }
