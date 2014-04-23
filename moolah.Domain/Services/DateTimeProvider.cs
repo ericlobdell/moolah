@@ -9,14 +9,13 @@ namespace moolah.Domain.Services
         /// <summary>
         /// Returns System.DateTime.Now, unless specifically overridden with SetCurrentDateTime
         /// </summary>
-        /// <returns></returns>
         public static DateTime GetCurrentDateTime()
         {
             return _currentDate ?? DateTime.Now;
         }
         /// <summary>
-        /// Overrides return value for GetCurrentDateTime. 
-        /// Use with care, implemented for testing only.
+        /// Overrides return value for GetCurrentDateTime.
+        /// Use with care, implemented for testing purposes only.
         /// </summary>
         /// <param name="dt"></param>
         public static void SetCurrentDateTime(DateTime dt)
@@ -37,7 +36,6 @@ namespace moolah.Domain.Services
         /// <param name="date1"></param>
         /// <param name="date2"></param>
         /// <param name="tolerance"></param>
-        /// <returns></returns>
         public static bool DatesAreWithinTolerance(DateTime date1, DateTime date2, TimeSpan tolerance)
         {
             return (date1 - date2).Duration() < tolerance;
@@ -47,7 +45,6 @@ namespace moolah.Domain.Services
         /// </summary>
         /// <param name="date1"></param>
         /// <param name="date2"></param>
-        /// <returns></returns>
         public static bool DatesAreWithinOneSecond ( DateTime date1, DateTime date2 )
         {
             return ( date1 - date2 ).Duration() < OneSecondTimeSpan;

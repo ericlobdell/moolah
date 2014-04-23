@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Widget;
 using Android.OS;
+using moolah.Domain.Models;
 using moolah.Domain.Services;
 
 namespace moolah.Android

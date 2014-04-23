@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using moolah.Domain.Models;
 using moolah.Domain.Services;
 
 namespace moolah.Domain.Interfaces

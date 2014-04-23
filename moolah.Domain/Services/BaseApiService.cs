@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using moolah.Domain.Interfaces;
+using moolah.Domain.Models;
 using Newtonsoft.Json;
 
 namespace moolah.Domain.Services

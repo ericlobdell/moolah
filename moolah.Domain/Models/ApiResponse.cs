@@ -2,7 +2,7 @@
 using System.Net.Http;
 using moolah.Domain.Interfaces;
 
-namespace moolah.Domain.Services
+namespace moolah.Domain.Models
 {
     public class ApiResponse : IApiResponse
     {
