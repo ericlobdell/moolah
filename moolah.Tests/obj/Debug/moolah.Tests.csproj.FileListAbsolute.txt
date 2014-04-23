@@ -1,0 +1,14 @@
+C:\Code\moolah\moolah.Tests\bin\Debug\moolah.Tests.dll.config
+C:\Code\moolah\moolah.Tests\bin\Debug\moolah.Tests.dll
+C:\Code\moolah\moolah.Tests\bin\Debug\moolah.Tests.pdb
+C:\Code\moolah\moolah.Tests\bin\Debug\moolah.Domain.dll
+C:\Code\moolah\moolah.Tests\bin\Debug\NSubstitute.dll
+C:\Code\moolah\moolah.Tests\bin\Debug\xunit.dll
+C:\Code\moolah\moolah.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Code\moolah\moolah.Tests\bin\Debug\moolah.Domain.pdb
+C:\Code\moolah\moolah.Tests\bin\Debug\NSubstitute.xml
+C:\Code\moolah\moolah.Tests\bin\Debug\xunit.xml
+C:\Code\moolah\moolah.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Code\moolah\moolah.Tests\obj\Debug\moolah.Tests.csprojResolveAssemblyReference.cache
+C:\Code\moolah\moolah.Tests\obj\Debug\moolah.Tests.dll
+C:\Code\moolah\moolah.Tests\obj\Debug\moolah.Tests.pdb
