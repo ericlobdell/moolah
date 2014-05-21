@@ -17,7 +17,7 @@ namespace moolah.Domain.Services
         public BaseApiService ( string endpoint )
         {
             if ( String.IsNullOrEmpty( _baseUrl ) )
-                _baseUrl = "http://ericlobdell.azurewebsites.net/api/";
+				_baseUrl = "http://**********/api/";
 
             if ( Api == null )
                 Api = new ApiRequestManager<ApiResponse>();
